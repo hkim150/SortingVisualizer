@@ -9,13 +9,17 @@ import (
 
 func init() {
 	rootCmd.Flags().IntP("size", "s", 30, "size of the array to sort")
+	rootCmd.Flags().StringP("sorter", "a", "bubble", "sorting algorithm - choose from [bubble]")
 }
 
 var rootCmd = &cobra.Command{
 	Short: "Visualize Sorting",
 	Run: func(cmd *cobra.Command, args []string) {
 		size, _ := cmd.Flags().GetInt("size")
-		fmt.Println("size: ", size)
+		algorithm, _ := cmd.Flags().GetString("sorter")
+
+		fmt.Println(size, algorithm)
+		// err := sorter.Sort(data)
 	},
 }
 
