@@ -2,10 +2,10 @@ package algorithm
 
 import "math/rand"
 
-func createData(n int) []int {
+func CreateData(n int) []int {
 	data := make([]int, n, n)
 	for i := range data {
-		data[i] = i+1
+		data[i] = i + 1
 	}
 
 	rand.Shuffle(n, func(i, j int) {

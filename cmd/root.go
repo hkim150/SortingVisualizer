@@ -3,23 +3,29 @@ package cmd
 import (
 	"fmt"
 	"os"
+	"sortingvisualizer/internal"
+	"sortingvisualizer/internal/algorithm"
 
 	"github.com/spf13/cobra"
 )
 
 func init() {
 	rootCmd.Flags().IntP("size", "s", 30, "size of the array to sort")
-	rootCmd.Flags().StringP("sorter", "a", "bubble", "sorting algorithm - choose from [bubble]")
+	rootCmd.Flags().StringP("algorithm", "a", "bubble", "sorting algorithm - choose from [bubble]")
 }
 
 var rootCmd = &cobra.Command{
 	Short: "Visualize Sorting",
 	Run: func(cmd *cobra.Command, args []string) {
 		size, _ := cmd.Flags().GetInt("size")
-		algorithm, _ := cmd.Flags().GetString("sorter")
+		algo, _ := cmd.Flags().GetString("algorithm")
 
-		fmt.Println(size, algorithm)
-		// err := sorter.Sort(data)
+		data := algorithm.CreateData(size)
+		err := internal.Sort(data, algo)
+		if err != nil {
+			fmt.Println("Error sorting the data: ", err)
+			return
+		}
 	},
 }
 
