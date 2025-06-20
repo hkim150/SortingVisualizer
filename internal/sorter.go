@@ -3,6 +3,7 @@ package internal
 import (
 	"fmt"
 	"sortingvisualizer/internal/algorithm"
+	"sortingvisualizer/internal/array"
 	"strings"
 )
 
@@ -10,13 +11,13 @@ var sorters = map[string]sorterFunc{
 	"bubble": algorithm.Bubble,
 }
 
-type sorterFunc func(data []int) error
+type sorterFunc func(arr *array.Array) error
 
-func (f sorterFunc) Sort(data []int) error {
-	return f(data)
+func (f sorterFunc) Sort(arr *array.Array) error {
+	return f(arr)
 }
 
-func Sort(data []int, algorithm string) error {
+func Sort(arr *array.Array, algorithm string) error {
 	sortFunc, ok := sorters[algorithm]
 	if !ok {
 		keys := make([]string, 0, len(sorters))
@@ -29,5 +30,5 @@ func Sort(data []int, algorithm string) error {
 		return fmt.Errorf("Unknown sorting algorithm. Choose from: %v\n", algorithms)
 	}
 
-	return sortFunc.Sort(data)
+	return sortFunc.Sort(arr)
 }

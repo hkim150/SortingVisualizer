@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 	"sortingvisualizer/internal"
-	"sortingvisualizer/internal/algorithm"
+	"sortingvisualizer/internal/array"
 
 	"github.com/spf13/cobra"
 )
@@ -20,8 +20,10 @@ var rootCmd = &cobra.Command{
 		size, _ := cmd.Flags().GetInt("size")
 		algo, _ := cmd.Flags().GetString("algorithm")
 
-		data := algorithm.CreateData(size)
-		err := internal.Sort(data, algo)
+		arr := array.NewArray(size)
+		arr.Print()
+
+		err := internal.Sort(arr, algo)
 		if err != nil {
 			fmt.Println("Error sorting the data: ", err)
 			return

@@ -1,12 +1,16 @@
 package algorithm
 
-func Bubble(data []int) error {
+import "sortingvisualizer/internal/array"
+
+func Bubble(arr *array.Array) error {
 	
-	for i:=len(data)-1; i>0; i-- {
+	for i:=arr.Len()-1; i>0; i-- {
 		for j:=0; j<i; j++ {
-			if data[j] > data[j+1] {
-				data[j], data[j+1] = data[j+1], data[j]
+			if arr.Data[j] > arr.Data[j+1] {
+				arr.Swap(j, j+1)
 			}
 		}
 	}
+	
+	return nil
 }
