@@ -11,7 +11,7 @@ import (
 
 func init() {
 	rootCmd.Flags().IntP("size", "s", 30, "size of the array to sort")
-	rootCmd.Flags().StringP("algorithm", "a", "bubble", "sorting algorithm - choose from [bubble]")
+	rootCmd.Flags().StringP("algorithm", "a", "bubble", fmt.Sprintf("sorting algorithm - choose from [%v]", internal.Algorithms()))
 }
 
 var rootCmd = &cobra.Command{
