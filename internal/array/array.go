@@ -23,37 +23,65 @@ var (
 )
 
 type Array struct {
-	Data       []int
+	data       []int
 	minVal     int
 	maxVal     int
+	compCount  int
+	moveCount  int
 	printDelay time.Duration
 }
 
 func NewArray(size int) *Array {
 	arr := &Array{
-		Data:       make([]int, size),
+		data:       make([]int, size),
 		minVal:     minElemSize,
 		maxVal:     minElemSize + size - 1,
 		printDelay: 40 * time.Millisecond,
 	}
 
 	for i := 0; i < size; i++ {
-		arr.Data[i] = arr.minVal + i
+		arr.data[i] = arr.minVal + i
 	}
 
 	rand.Shuffle(size, func(i, j int) {
-		arr.Data[i], arr.Data[j] = arr.Data[j], arr.Data[i]
+		arr.data[i], arr.data[j] = arr.data[j], arr.data[i]
 	})
 
 	return arr
 }
 
 func (a *Array) Len() int {
-	return len(a.Data)
+	return len(a.data)
 }
 
 func (a *Array) Swap(i, j int) {
-	a.Data[i], a.Data[j] = a.Data[j], a.Data[i]
+	a.data[i], a.data[j] = a.data[j], a.data[i]
+	a.moveCount++
+	a.Print()
+}
+
+func (a *Array) IsLT(i, j int) bool {
+	a.compCount++
+	return a.data[i] < a.data[j]
+}
+
+func (a *Array) IsLTE(i, j int) bool {
+	a.compCount++
+	return a.data[i] <= a.data[j]
+}
+
+func (a *Array) IsGT(i, j int) bool {
+	a.compCount++
+	return a.data[i] > a.data[j]
+}
+
+func (a *Array) GetValue(i int) int {
+	return a.data[i]
+}
+
+func (a *Array) SetValue(i, v int) {
+	a.moveCount++
+	a.data[i] = v
 	a.Print()
 }
 
@@ -61,14 +89,14 @@ func (a *Array) Print() {
 	if a.Len() == 0 {
 		return
 	}
-	
+
 	clearScreen()
 
 	numColors := len(rainbowColors)
 
 	// Print the visualization
 	for r := a.maxVal; r > 0; r-- {
-		for _, val := range a.Data {
+		for _, val := range a.data {
 			if r <= val {
 				// Calculate color based on value's position in the range
 				ratio := 0.0
@@ -105,6 +133,9 @@ func (a *Array) Print() {
 		}
 		fmt.Println()
 	}
+
+	fmt.Println("Comparison Count: ", a.compCount)
+	fmt.Println("Move Count: ", a.moveCount)
 
 	time.Sleep(a.printDelay)
 }
