@@ -9,6 +9,7 @@ import (
 
 var sorters = map[string]sorterFunc{
 	"bubble": algorithm.Bubble,
+	"merge":  algorithm.Merge,
 }
 
 type sorterFunc func(arr *array.Array) error
