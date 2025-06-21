@@ -20,6 +20,11 @@ var rootCmd = &cobra.Command{
 		size, _ := cmd.Flags().GetInt("size")
 		algo, _ := cmd.Flags().GetString("algorithm")
 
+		if !(1 <= size && size <= 100) {
+			fmt.Println("Size must be between 1 to 100")
+			return
+		}
+
 		arr := array.NewArray(size)
 		arr.Print()
 
