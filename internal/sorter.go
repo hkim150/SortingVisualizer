@@ -8,10 +8,11 @@ import (
 )
 
 var algorithms = map[string]sortFunc{
-	"bubble": algorithm.Bubble,
-	"merge":  algorithm.Merge,
-	"quick": algorithm.Quick,
+	"bubble":    algorithm.Bubble,
+	"merge":     algorithm.Merge,
+	"quick":     algorithm.Quick,
 	"insertion": algorithm.Insertion,
+	"selection": algorithm.Selection,
 }
 
 type sortFunc func(arr *array.Array) error
