@@ -11,6 +11,7 @@ var algorithms = map[string]sortFunc{
 	"bubble": algorithm.Bubble,
 	"merge":  algorithm.Merge,
 	"quick": algorithm.Quick,
+	"insertion": algorithm.Insertion,
 }
 
 type sortFunc func(arr *array.Array) error
