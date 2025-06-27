@@ -10,7 +10,7 @@ import (
 )
 
 func init() {
-	rootCmd.Flags().IntP("size", "s", 30, "size of the array to sort")
+	rootCmd.Flags().IntP("size", "s", 25, "size of the array to sort")
 	rootCmd.Flags().StringP("algorithm", "a", "bubble", fmt.Sprintf("sorting algorithm - choose from [%v]", internal.Algorithms()))
 }
 
