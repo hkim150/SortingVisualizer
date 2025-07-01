@@ -2,7 +2,7 @@ package algorithm
 
 import "sortingvisualizer/internal/array"
 
-func Selection(arr *array.Array) error {
+func Selection(arr *array.Array) {
 	for i := range arr.Len() {
 		minIdx := i
 		for j:=i+1; j<arr.Len(); j++ {
@@ -15,6 +15,4 @@ func Selection(arr *array.Array) error {
 			arr.Swap(i, minIdx)
 		}
 	}
-
-	return nil
 }

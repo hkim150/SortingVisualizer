@@ -4,9 +4,8 @@ import (
 	"sortingvisualizer/internal/array"
 )
 
-func Merge(arr *array.Array) error {
+func Merge(arr *array.Array) {
 	mergeSort(arr, 0, arr.Len()-1)
-	return nil
 }
 
 func mergeSort(arr *array.Array, start, end int) {

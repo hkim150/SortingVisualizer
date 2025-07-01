@@ -15,10 +15,10 @@ var algorithms = map[string]sortFunc{
 	"selection": algorithm.Selection,
 }
 
-type sortFunc func(arr *array.Array) error
+type sortFunc func(arr *array.Array)
 
-func (f sortFunc) Sort(arr *array.Array) error {
-	return f(arr)
+func (f sortFunc) Sort(arr *array.Array) {
+	f(arr)
 }
 
 func Sort(arr *array.Array, algorithm string) error {
@@ -34,7 +34,8 @@ func Sort(arr *array.Array, algorithm string) error {
 		return fmt.Errorf("Unknown sorting algorithm. Choose from: %v\n", algorithms)
 	}
 
-	return sortFunc.Sort(arr)
+	sortFunc.Sort(arr)
+	return nil
 }
 
 func Algorithms() string {

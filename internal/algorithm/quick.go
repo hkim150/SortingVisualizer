@@ -5,9 +5,8 @@ import (
 	"sortingvisualizer/internal/array"
 )
 
-func Quick(arr *array.Array) error {
+func Quick(arr *array.Array) {
 	quickSort(arr, 0, arr.Len()-1)
-	return nil
 }
 
 func quickSort(arr *array.Array, start, end int) {
