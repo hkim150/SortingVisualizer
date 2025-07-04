@@ -14,6 +14,7 @@ var algorithms = map[string]sortFunc{
 	"insertion": algorithm.Insertion,
 	"selection": algorithm.Selection,
 	"heap":      algorithm.Heap,
+	"shell":     algorithm.Shell,
 }
 
 type sortFunc func(arr *array.Array)
